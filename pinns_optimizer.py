@@ -237,12 +237,12 @@ def create_force_diagram_plotly(H, n, m, xi):
         fig.add_annotation(x=x + dx * 1.1, y=y + dy * 1.1,
                            text=label, showarrow=False, font=dict(size=14, color='black'))
 
-    add_arrow(mid - lG1, H / 3, 0, -4, 'G1')
-    add_arrow(mid - lG2, H * (1 - xi) / 3, 0, -3.5, 'G2')
-    add_arrow(mid - lt, 0, 0, 3.5, 'Wt')
-    add_arrow(mid - l2, H * (1 - xi) + xi * H / 2, 0, -2.8, "W'2")
-    add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, -2.8, 'W"2')
-    add_arrow(x0 - 3, l1, 2.5, 0, 'W1')
+    add_arrow(mid - lG1, H / 3, 0, 4, 'G1')
+    add_arrow(mid - lG2, H * (1 - xi) / 3, 0, 3.5, 'G2')
+    add_arrow(mid - lt, 0, 0, -3.5, 'Wt')
+    add_arrow(mid - l2, H * (1 - xi) + xi * H / 2, 0, 2.8, "W'2")
+    add_arrow(mid - l22, 2/3 * H * (1 - xi), 0, 2.8, 'W"2')
+    add_arrow(x0 - 3, l1, -2.5, 0, 'W1')
 
     fig.update_layout(
         title=f"Sơ đồ lực tác dụng lên đập H = {H} m",
