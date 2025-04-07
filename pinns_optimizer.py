@@ -255,3 +255,61 @@ def create_force_diagram_plotly(H, n, m, xi):
     )
 
     return fig
+# Hàm tạo biểu đồ hàm mất mát
+def plot_loss_curve(loss_history):
+    """
+    Tạo biểu đồ hàm mất mát từ lịch sử tối ưu hóa
+    
+    Parameters:
+    -----------
+    loss_history : list
+        Danh sách giá trị hàm mất mát theo từng vòng lặp
+        
+    Returns:
+    --------
+    fig : plotly.graph_objects.Figure
+        Biểu đồ Plotly tương tác
+    """
+    import plotly.graph_objects as go
+    import numpy as np
+    
+    # Tạo mảng chỉ số vòng lặp
+    epochs = np.arange(len(loss_history))
+    
+    # Tạo biểu đồ
+    fig = go.Figure()
+    
+    # Thêm đường biểu diễn hàm mất mát
+    fig.add_trace(go.Scatter(
+        x=epochs,
+        y=loss_history,
+        mode='lines',
+        name='Hàm mất mát',
+        line=dict(color='#0066cc', width=2)
+    ))
+    
+    # Cấu hình chung
+    fig.update_layout(
+        title='Biểu đồ hàm mất mát theo vòng lặp',
+        xaxis_title='Vòng lặp',
+        yaxis_title='Giá trị hàm mất mát',
+        width=850,
+        height=500,
+        plot_bgcolor='white',
+        hovermode='x unified'
+    )
+    
+    # Thêm lưới
+    fig.update_xaxes(
+        showgrid=True,
+        gridwidth=1,
+        gridcolor='lightgray',
+    )
+    fig.update_yaxes(
+        showgrid=True,
+        gridwidth=1,
+        gridcolor='lightgray',
+        type='log'  # Sử dụng thang logarit cho trục y
+    )
+    
+    return fig
