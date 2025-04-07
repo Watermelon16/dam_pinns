@@ -325,27 +325,27 @@ with tabs[0]:
             col_params1, col_params2 = st.columns(2)
             
             with col_params1:
-                st.metric("Hệ số mái thượng lưu (n)", f"{result['n']:.4f}")
-                st.metric("Hệ số mái hạ lưu (m)", f"{result['m']:.4f}")
-                st.metric("Tham số ξ", f"{result['xi']:.4f}")
+                st.metric("Hệ số mái thượng lưu (n)", f"{result['n']:.3f}")
+                st.metric("Hệ số mái hạ lưu (m)", f"{result['m']:.3f}")
+                st.metric("Tham số ξ", f"{result['xi']:.3f}")
             
             with col_params2:
-                st.metric("Diện tích mặt cắt (A)", f"{result['A']:.4f} m²")
-                st.metric("Hệ số ổn định (K)", f"{result['K']:.4f}")
-                st.metric("Ứng suất mép thượng lưu (σ)", f"{result['sigma']:.4f} T/m²")
+                st.metric("Diện tích mặt cắt (A)", f"{result['A']:.2f} m²")
+                st.metric("Hệ số ổn định (K)", f"{result['K']:.2f}")
+                st.metric("Ứng suất mép thượng lưu (σ)", f"{result['sigma']:.2f} T/m²")
             
             # Hiển thị trạng thái
             if abs(result['K'] - result['Kc']) < 0.05:  # Sai số cho phép 5%
-                st.success(f"Mặt cắt đập thỏa mãn điều kiện ổn định (K = {result['K']:.4f} ≈ Kc = {result['Kc']:.2f})")
+                st.success(f"Mặt cắt đập thỏa mãn điều kiện ổn định (K = {result['K']:.2f} ≈ Kc = {result['Kc']:.2f})")
             elif result['K'] > result['Kc']:
-                st.info(f"Mặt cắt đập thỏa mãn điều kiện ổn định (K = {result['K']:.4f} > Kc = {result['Kc']:.2f})")
+                st.info(f"Mặt cắt đập thỏa mãn điều kiện ổn định (K = {result['K']:.2f} > Kc = {result['Kc']:.2f})")
             else:
-                st.error(f"Mặt cắt đập KHÔNG thỏa mãn điều kiện ổn định (K = {result['K']:.4f} < Kc = {result['Kc']:.2f})")
+                st.error(f"Mặt cắt đập KHÔNG thỏa mãn điều kiện ổn định (K = {result['K']:.2f} < Kc = {result['Kc']:.2f})")
             
             if result['sigma'] <= 0:
-                st.success(f"Mặt cắt đập thỏa mãn điều kiện không kéo (σ = {result['sigma']:.4f} T/m² ≤ 0)")
+                st.success(f"Mặt cắt đập thỏa mãn điều kiện không kéo (σ = {result['sigma']:.2f} T/m² ≤ 0)")
             else:
-                st.warning(f"Mặt cắt đập có ứng suất kéo ở mép thượng lưu (σ = {result['sigma']:.4f} T/m² > 0)")
+                st.warning(f"Mặt cắt đập có ứng suất kéo ở mép thượng lưu (σ = {result['sigma']:.2f} T/m² > 0)")
             
             # Hiển thị thông tin về số vòng lặp
             st.info(f"Số vòng lặp thực tế: {result['iterations']} / {result.get('max_iterations', max_iterations)} (tối đa)")
